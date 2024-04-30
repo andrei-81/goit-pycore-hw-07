@@ -2,6 +2,7 @@ from collections import UserDict
 from record import Record
 from name import Name
 from phone import Phone
+from custom_error import *
 
 class AddressBook(UserDict):
 
@@ -27,9 +28,9 @@ class AddressBook(UserDict):
         def inner(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            except ValueError:
+            except Invalid_birthday_error:
                 return "birthday should be in DD.MM.YYYY format"
-            except TypeError: 
+            except Invalid_phone_number_error: 
                 return "phone should contain 10 digits"
         return inner
 
